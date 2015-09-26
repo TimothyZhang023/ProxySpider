@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
+import logging
 import re
-from pyspider.libs import log
 import scrapy
 import BeautifulSoup
 from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
@@ -15,28 +15,29 @@ from scrapy.http import Request
 class XiciSpider(scrapy.Spider):
     name = "xici"
 
-    allowed_domains = ["www.xici.net.co"]
+    allowed_domains = ["www.xicidaili.com"]
     disallowed_domains = []
 
     start_urls = (
-        'http://www.xici.net.co',
+        'http://www.xicidaili.com',
     )
 
     # start_urls = (
-    # 'http://www.xici.net.co/nn/',
-    # 'http://www.xici.net.co/wn/',
-    # 'http://www.xici.net.co/wt/',
-    # 'http://www.xici.net.co/nt/',
+    #     # 'http://www.xici.net.co',
+    #     'http://www.xici.net.co/nn/',
+    #     'http://www.xici.net.co/wn/',
+    #     'http://www.xici.net.co/wt/',
+    #     'http://www.xici.net.co/nt/',
     # )
 
     rules = [
         Rule(SgmlLinkExtractor(allow=(r'/([wnt]+)/?\d*',)), callback='parse_item', follow=True),
     ]
 
-    item_patt = re.compile(r"http://www.xici.net.co/([wnt]+)/?\d*")
+    item_patt = re.compile(r"http://www.xicidaili.com/([wnt]+)/?\d*")
 
     def parse(self, response):
-        self.log('now parse:' + response.url)
+        self.log('now parse:' + response.url, logging.INFO)
 
         response_selector = HtmlXPathSelector(text=response.body.decode("UTF-8", "ignore"))
         ip_list_tables = response_selector.xpath('//*[@id="ip_list"]').extract()
@@ -63,9 +64,10 @@ class XiciSpider(scrapy.Spider):
 
         response_selector = HtmlXPathSelector(text=response.body)
         all_url_list = response_selector.xpath('//a/@href').extract()
-
         for next_link in all_url_list:
             next_link = clean_url(response.url, next_link, response.encoding)
+            print next_link
+
             matched_next_link = self.item_patt.findall(next_link)
             if len(matched_next_link) == 1:
                 yield Request(url=next_link, callback=self.parse_item)
@@ -75,7 +77,7 @@ class XiciSpider(scrapy.Spider):
         pass
 
     def parse_item(self, response):
-        self.log('now parse_detail:' + response.url)
+        self.log('now parse_detail:' + response.url, logging.INFO)
 
         response_selector = HtmlXPathSelector(text=response.body.decode("UTF-8", "ignore"))
         ip_list_tables = response_selector.xpath('//*[@id="ip_list"]').extract()
@@ -113,6 +115,7 @@ class XiciSpider(scrapy.Spider):
                 yield Request(url=next_link, callback=self.parse_item)
             else:
                 yield Request(url=next_link, callback=self.parse)
+
                 # pagination_div = response_selector.xpath('//*[@id="body"]/div[@class="pagination"]').extract()[0]
                 # soup = BeautifulSoup.BeautifulSoup(pagination_div)
                 # next_urls = soup.findAll('a')

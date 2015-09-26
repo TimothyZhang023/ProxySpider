@@ -62,8 +62,8 @@ SPIDER_MIDDLEWARES_BASE = {
 # To make RotateUserAgentMiddleware enable.
 USER_AGENT = ''
 
-LOG_FILE = "scrapy.log"
-LOG_LEVEL = "ERROR"
+#LOG_FILE = "scrapy.log"
+LOG_LEVEL = "INFO"
 LOG_STDOUT = False
 
 # SCHEDULER = "proxyxici.scrapy_redis.scheduler.Scheduler"
@@ -75,9 +75,9 @@ REDIS_PORT = 6379
 
 MYSQL_HOST = "127.0.0.1"
 MYSQL_PORT = 3306
-MYSQL_DB = 'spider'
-MYSQL_USER = 'root'
-MYSQL_PASSWORD = ''
+MYSQL_DB = 'proxy'
+MYSQL_USER = 'proxy'
+MYSQL_PASSWORD = 'proxy'
 
 PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
 HTML_DIR = os.path.join(PROJECT_DIR, '../html')
