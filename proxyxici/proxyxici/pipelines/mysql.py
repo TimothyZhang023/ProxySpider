@@ -19,7 +19,7 @@ class MySQLStorePipeline(object):
                                             cursorclass=MySQLdb.cursors.DictCursor,
                                             charset='utf8',
                                             use_unicode=False
-        )
+                                            )
 
     @classmethod
     def from_settings(cls, settings):
@@ -39,4 +39,4 @@ class MySQLStorePipeline(object):
             tx.execute(
                 'insert into proxy (proxy_ip,proxy_port,proxy_location,proxy_type,proxy_security) values (%s, %s, %s, %s, %s)'
                 , (item['proxy_ip'], item['proxy_port'], item['proxy_location'], item['proxy_type'],
-                   item['proxy_security'] ))
+                   item['proxy_security']))

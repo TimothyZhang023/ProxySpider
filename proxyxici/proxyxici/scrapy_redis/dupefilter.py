@@ -1,13 +1,15 @@
 #!/usr/bin/python
-#-*-coding:utf-8-*-
+# -*-coding:utf-8-*-
 
 import redis
 import time
 
 from scrapy.dupefilter import BaseDupeFilter
 from scrapy.utils.request import request_fingerprint
+
 REDIS_HOST = 'localhost'
 REDIS_PORT = 6379
+
 
 class RFPDupeFilter(BaseDupeFilter):
     """Redis-based request duplication filter"""
@@ -56,5 +58,5 @@ class RFPDupeFilter(BaseDupeFilter):
 
     def clear(self):
         """Clears fingerprints data"""
-        #self.server.delete(self.key)
+        # self.server.delete(self.key)
         pass

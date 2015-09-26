@@ -32,4 +32,3 @@ class PrintProxyInfoPipeline(object):
 
     def handle_error(self, e):
         log.err(e)
-

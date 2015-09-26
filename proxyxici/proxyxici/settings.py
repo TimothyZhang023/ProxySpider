@@ -19,7 +19,7 @@ DOWNLOAD_DELAY = 0
 CONCURRENT_ITEMS = 200
 CONCURRENT_REQUESTS = 500
 
-#The maximum number of concurrent (ie. simultaneous) requests that will be performed to any single domain.
+# The maximum number of concurrent (ie. simultaneous) requests that will be performed to any single domain.
 CONCURRENT_REQUESTS_PER_DOMAIN = 20
 CONCURRENT_REQUESTS_PER_IP = 0
 DEPTH_LIMIT = 0
@@ -30,13 +30,13 @@ RETRY_ENABLED = False
 
 
 
-#AutoThrottle extension
+# AutoThrottle extension
 AUTOTHROTTLE_ENABLED = False
 AUTOTHROTTLE_START_DELAY = 3.0
-AUTOTHROTTLE_CONCURRENCY_CHECK_PERIOD = 10  #How many responses should pass to perform concurrency adjustments.
+AUTOTHROTTLE_CONCURRENCY_CHECK_PERIOD = 10  # How many responses should pass to perform concurrency adjustments.
 
-#XXX:scrapy's item pipelines have orders!!!!!,it will go through all the pipelines by the order of the list;
-#So if you change the item and return it,the new item will transfer to the next pipeline.
+# XXX:scrapy's item pipelines have orders!!!!!,it will go through all the pipelines by the order of the list;
+# So if you change the item and return it,the new item will transfer to the next pipeline.
 ITEM_PIPELINES = {
     'proxyxici.pipelines.test.PrintProxyInfoPipeline': 900,
     'proxyxici.pipelines.mysql.MySQLStorePipeline': 901,
@@ -44,7 +44,7 @@ ITEM_PIPELINES = {
 
 COOKIES_ENABLED = False
 
-#USER_AGENT = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.43 Safari/537.31'
+# USER_AGENT = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.43 Safari/537.31'
 
 DOWNLOADER_MIDDLEWARES = {
     #    'cse.contrib.downloadmiddleware.google_cache.GoogleCacheMiddleware':50,
@@ -59,16 +59,16 @@ SPIDER_MIDDLEWARES_BASE = {
 }
 
 
-#To make RotateUserAgentMiddleware enable.
+# To make RotateUserAgentMiddleware enable.
 USER_AGENT = ''
 
 LOG_FILE = "scrapy.log"
 LOG_LEVEL = "ERROR"
 LOG_STDOUT = False
 
-#SCHEDULER = "proxyxici.scrapy_redis.scheduler.Scheduler"
-#SCHEDULER_PERSIST = False
-#SCHEDULER_QUEUE_CLASS = 'proxyxici.scrapy_redis.queue.SpiderQueue'
+# SCHEDULER = "proxyxici.scrapy_redis.scheduler.Scheduler"
+# SCHEDULER_PERSIST = False
+# SCHEDULER_QUEUE_CLASS = 'proxyxici.scrapy_redis.queue.SpiderQueue'
 
 REDIS_HOST = "127.0.0.1"
 REDIS_PORT = 6379
@@ -79,14 +79,13 @@ MYSQL_DB = 'spider'
 MYSQL_USER = 'root'
 MYSQL_PASSWORD = ''
 
-
 PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
 HTML_DIR = os.path.join(PROJECT_DIR, '../html')
 
 
 # JOBDIR='jobs'
 
-#AJAXCRAWL_ENABLED = True
+# AJAXCRAWL_ENABLED = True
 
-#DUPEFILTER_CLASS = 'scrapy.dupefilter.RFPDupeFilter'
-#SCHEDULER = 'scrapy.core.scheduler.Scheduler'
+# DUPEFILTER_CLASS = 'scrapy.dupefilter.RFPDupeFilter'
+# SCHEDULER = 'scrapy.core.scheduler.Scheduler'

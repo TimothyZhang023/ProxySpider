@@ -14,15 +14,14 @@ class FilterResponses(object):
                 return True
         return False
 
-
     def process_response(self, request, response, spider):
         """
         Only allow HTTP response types that that match the given list of
         filtering regexs
         """
         # to specify on a per-spider basis
-        #type_whitelist = getattr(spider, "response_type_whitelist", None)
-        type_whitelist = (r'text', )
+        # type_whitelist = getattr(spider, "response_type_whitelist", None)
+        type_whitelist = (r'text',)
         content_type_header = response.headers.get('content-type', None)
         if not content_type_header or not type_whitelist:
             return response

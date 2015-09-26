@@ -1,5 +1,5 @@
 #!/usr/bin/python
-#-*-coding:utf-8-*-
+# -*-coding:utf-8-*-
 import json
 import redis
 
@@ -55,7 +55,7 @@ class Base(object):
 
     def clear(self):
         """Clear queue/stack"""
-        #self.server.delete(self.key)
+        # self.server.delete(self.key)
         pass
 
 
@@ -141,6 +141,7 @@ class RedisKV(object):
 
     def exists(self, key):
         return self.server.exists(key)
+
 
 #
 # class IndexNotifyQueue(object):

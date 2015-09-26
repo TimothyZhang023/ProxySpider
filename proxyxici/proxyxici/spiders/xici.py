@@ -69,8 +69,8 @@ class XiciSpider(scrapy.Spider):
             matched_next_link = self.item_patt.findall(next_link)
             if len(matched_next_link) == 1:
                 yield Request(url=next_link, callback=self.parse_item)
-            # else:
-            #     yield Request(url=next_link, callback=self.parse)
+                # else:
+                #     yield Request(url=next_link, callback=self.parse)
 
         pass
 
@@ -119,5 +119,3 @@ class XiciSpider(scrapy.Spider):
                 # for new_url in next_urls:
                 #     next_url = clean_url(response.url, new_url['href'], response.encoding)
                 #     yield Request(url=next_url, callback=self.parse_item)
-
-

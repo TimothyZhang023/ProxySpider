@@ -46,6 +46,7 @@ def uncompress_hash(c_hash):
 def get_hash(hash):
     return hashlib.md5(hash).hexdigest()
 
+
 def get_compressed_hash(hash):
     return encode_b64(int(get_hash(hash), 16))
 
@@ -56,49 +57,43 @@ def test(url_hash):
     print url_hash_c
     print url_hash
 
-#
-# url = "http://www.zts1993.com"
-# url_hash = hashlib.md5(url.lower()).hexdigest()
-# test(url_hash)
-#
-# print get_compressed_hash(url)
+
+def main():
+    url = "http://www.zts1993.com"
+    url_hash = hashlib.md5(url.lower()).hexdigest()
+    test(url_hash)
+
+    print get_compressed_hash(url)
+
+    url_hash = hashlib.sha1(url.lower()).hexdigest()
+    test(url_hash)
+
+    url_hash = hashlib.sha256(url.lower()).hexdigest()
+    test(url_hash)
+
+    url_hash = hashlib.sha512(url.lower()).hexdigest()
+    test(url_hash)
+
+    test("788f744549992666c4b298052a6134870ee66448")
+    test("788f744549992666c4b298052a6134870ee66449")
+
+    test("0000000000000000000000000000000000000000")
+    test("ffffffffffffffffffffffffffffffffffffffff")
+
+    url_hash_10 = int(url_hash, 16)
+    url_hash_64 = encode_b64(url_hash_10, )
+    url_hash_10_d = decode_b64(url_hash_64, )
+    url_hash_d = str(hex(url_hash_10_d)).replace('0x', '').replace('L', '')
+
+    url = "http://www.zts1993.com"
+    url_hash = hashlib.md5(url.lower()).hexdigest()
+    test(url_hash)
+
+    print url_hash_10
+    print url_hash_64
+    print url_hash_10_d
+    print url_hash_d
 
 
-# url_hash = hashlib.sha1(url.lower()).hexdigest()
-# test(url_hash)
-
-
-# url_hash = hashlib.sha256(url.lower()).hexdigest()
-# test(url_hash)
-
-
-# url_hash = hashlib.sha512(url.lower()).hexdigest()
-# test(url_hash)
-#
-#
-# test("788f744549992666c4b298052a6134870ee66448")
-# test("788f744549992666c4b298052a6134870ee66449")
-#
-#
-#
-#
-# test("0000000000000000000000000000000000000000")
-# test("ffffffffffffffffffffffffffffffffffffffff")
-
-
-# url_hash_10 = int(url_hash, 16)
-# url_hash_64 = encode_b64(url_hash_10, )
-# url_hash_10_d = decode_b64(url_hash_64, )
-# url_hash_d = str(hex(url_hash_10_d)).replace('0x', '').replace('L', '')
-
-
-
-
-# url = "http://www.zts1993.com"
-# url_hash = hashlib.md5(url.lower()).hexdigest()
-# test(url_hash)
-
-# print url_hash_10
-# print url_hash_64
-# print url_hash_10_d
-# print url_hash_d
+if __name__ == "__main__":
+    main()
